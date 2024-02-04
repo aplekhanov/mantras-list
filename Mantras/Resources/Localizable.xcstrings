@@ -1,0 +1,57 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "mantraListTitle" : {
+      "comment" : "Title of the mantra list",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List of Mantras"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список мантр"
+          }
+        }
+      }
+    },
+    "openMantraListButtonTitle" : {
+      "comment" : "Button title to open the mantra list",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Mantra List"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть список мантр"
+          }
+        }
+      }
+    },
+    "shuffleMantraListButtonTitle" : {
+      "comment" : "Button title to shuffle the mantra list",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shuffle"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перемешать"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
