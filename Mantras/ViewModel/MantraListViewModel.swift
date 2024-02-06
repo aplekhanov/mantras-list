@@ -11,14 +11,16 @@ final class MantraListViewModel {
     
     init(dataService: MantraDataServiceProtocol = MantraDataService()) {
         self.dataService = dataService
-        getMantras()
+        Task {
+            await getMantras()
+        }
     }
     
-    func getMantras() {
-        if let savedMantras = dataService.loadMantras() {
+    func getMantras() async {
+        if let savedMantras = await dataService.loadMantras() {
             mantras = savedMantras
         } else {
-            Task { await fetchMantras() }
+            await fetchMantras()
         }
     }
     
@@ -32,6 +34,8 @@ final class MantraListViewModel {
     
     func shuffleMantras() {
         mantras.shuffle()
-        dataService.save(mantras)
+        Task {
+            await dataService.save(mantras)
+        }
     }
 }

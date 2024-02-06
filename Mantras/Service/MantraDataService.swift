@@ -4,8 +4,8 @@ import Foundation
 
 protocol MantraDataServiceProtocol {
     func fetchMantras() async throws -> [Mantra]
-    func save(_ mantras: [Mantra])
-    func loadMantras() -> [Mantra]?
+    func save(_ mantras: [Mantra]) async
+    func loadMantras() async -> [Mantra]?
 }
 
 protocol BundleProtocol {
@@ -22,7 +22,7 @@ protocol UserDefaultsProtocol {
 extension UserDefaults: UserDefaultsProtocol {}
 
 
-final class MantraDataService: MantraDataServiceProtocol {
+actor MantraDataService: MantraDataServiceProtocol {
     
     static let saveDefaultsKey = "mantraListSaveDefaultsKey"
     
@@ -47,12 +47,12 @@ final class MantraDataService: MantraDataServiceProtocol {
         return mantras
     }
     
-    func save(_ mantras: [Mantra]) {
+    func save(_ mantras: [Mantra]) async {
         let data = try? JSONEncoder().encode(mantras)
         userDefaults.set(data, forKey: MantraDataService.saveDefaultsKey)
     }
     
-    func loadMantras() -> [Mantra]? {
+    func loadMantras() async -> [Mantra]? {
         guard let data = userDefaults.data(forKey: MantraDataService.saveDefaultsKey) else { return nil }
         return try? JSONDecoder().decode([Mantra].self, from: data)
     }

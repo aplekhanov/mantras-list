@@ -51,8 +51,8 @@ class MantraDataServiceTests: XCTestCase {
         }
     }
     
-    func testSaveMantras() {
-        service.save(testMantras)
+    func testSaveMantras() async {
+        await service.save(testMantras)
         
         guard let savedData = mockUserDefaults.store[MantraDataService.saveDefaultsKey] as? Data else {
             XCTFail("Mantras data not saved")
@@ -64,11 +64,11 @@ class MantraDataServiceTests: XCTestCase {
         XCTAssertEqual(savedMantras, testMantras, "Saved mantras should match the test mantras.")
     }
 
-    func testLoadMantras() {
+    func testLoadMantras() async {
         let data = try! JSONEncoder().encode(testMantras)
         mockUserDefaults.store[MantraDataService.saveDefaultsKey] = data
 
-        let loadedMantras = service.loadMantras()
+        let loadedMantras = await service.loadMantras()
         
         XCTAssertNotNil(loadedMantras, "Loaded mantras should not be nil.")
         XCTAssertEqual(loadedMantras?.first?.name, testMantras.first?.name, "The loaded mantra name should match the expected value.")
